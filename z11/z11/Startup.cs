@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using z11.Modeles;
+using z11.Services;
 
 namespace z11
 {
@@ -26,6 +27,7 @@ namespace z11
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IDbService, MssqlDbService>();
             services.AddDbContext<CodeFirstContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DbContext"));
